@@ -43,6 +43,18 @@ code {
   width: 260px;
 }
 
+.osButton {
+  width: 200px;
+}
+
+#OSSelect {
+  padding-top:80px; padding-bottom:100px;
+}
+
+#instructions{
+  padding-top:20px; 
+}
+
 .textAlignLeft{
   padding-left: 0px;
 }
