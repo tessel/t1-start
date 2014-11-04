@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .row
+    .large-12.columns.fre-container
+      h1 Multiple Modules
+      p Plug in multiple modules to your Tessel for more interactions!
+      p Put the BLE and Accelerometer Modules together for an activity tracking app, or
+        |  a Climate Module and a Relay Module together to build an internet-connected thermostat.
+      p Whatever you're making, multiple modules on Tessel will be a fun way to go.
+      
+      h2 Loading multiple modules
+      p You may have noticed that each module example tells you to wait for an <code>on('ready')</code> event.'
+        |  This ensures your code doesn't run before the hardware has acknowledged that it is powered on and ready to go.
+      p However, when you use multiple modules, waiting for ready events can cause a race condition if you're not careful.
+        |  If you require both modules at the top, like this
+      pre
+        code
+          var
+      p Within your project directory,
+      cli
+        code npm install tesselate
+      p This community-contributed module lets you specify
