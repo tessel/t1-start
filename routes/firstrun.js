@@ -34,3 +34,7 @@ exports.tweet = function (req, res) {
 exports.finished = function (req, res) {
 	res.render('FRE-finished.jade', {title: 'Finished!', page: 'finished'});
 };
+
+exports.manyModules = function (req, res) {
+	res.render('many-modules.jade', {title: 'Multiple Modules'});
+};

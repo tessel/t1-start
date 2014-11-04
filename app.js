@@ -42,6 +42,7 @@ app.get('/modules', firstrun.modules);
 app.get('/wifi', firstrun.wifi);
 app.get('/tweet', firstrun.tweet);
 app.get('/finished', firstrun.finished);
+app.get('/many-modules', firstrun.manyModules);
 
 // get the data from github
 var githubCode = {
