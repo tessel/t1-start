@@ -43,6 +43,7 @@ app.get('/wifi', firstrun.wifi);
 app.get('/tweet', firstrun.tweet);
 app.get('/finished', firstrun.finished);
 app.get('/many-modules', firstrun.manyModules);
+app.get('/untethered', firstrun.untethered);
 
 // get the data from github
 var githubCode = {
