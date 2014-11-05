@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var request = require('request');
 var firstrun = require('./routes/firstrun');
+var tutorials = require('./routes/tutorials');
 
 var app = express()
   .set('port', process.env.PORT || 7000)
@@ -42,8 +43,9 @@ app.get('/modules', firstrun.modules);
 app.get('/wifi', firstrun.wifi);
 app.get('/tweet', firstrun.tweet);
 app.get('/finished', firstrun.finished);
-app.get('/many-modules', firstrun.manyModules);
-app.get('/untethered', firstrun.untethered);
+
+app.get('/many-modules', tutorials.manyModules);
+app.get('/untethered', tutorials.untethered);
 
 // get the data from github
 var githubCode = {
