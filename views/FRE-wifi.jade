@@ -23,6 +23,10 @@ block content
           p To check whether you're connected, run
           code
             cli tessel wifi -l
+        .large-6.columns
+          img(src="#{s3url}wifi.JPG").constrain
+      .row
+        .large-12.columns
           p This lists available wifi networks and will also show your connection status.
           p If the red status light goes on, it means Tessel tried to connect to a network but was unable to succeed. The red LED also turns on if the wifi connection drops. 
           ul 
@@ -30,8 +34,6 @@ block content
             li Steady red LED = Tessel is not connected to wifi
 
           p All 4 LEDS (red, blue, green, and yellow) are accessible through Tessel's <a href="https://tessel.io/docs/hardwareAPI#api-array-Pin-tessel-led" target="_blank">hardware API</a>. If user pushed code is changing the state of the yellow/red LEDs, they will no longer be reliable indicators of Wifi state.
-        .large-6.columns
-          img(src="#{s3url}wifi.JPG").constrain
       .row
         .large-12.columns
           .greyBar(style="height:2px;")
@@ -78,79 +80,24 @@ block content
         .large-12.columns
           .greyBar(style="height:2px;")
           
-          p Tessel's wifi can also be controlled programatically. The full API docs can be found 
+          p Tessel's wifi can also be controlled programmatically. The full API docs can be found 
             a(href="https://tessel.io/docs/wifi") here.
 
-          p Save the following in a file called <code>wifi-control.js</code>:
-          pre.prettyprint#exampleCode
-            code.
-              /* the wifi-cc3000 library is bundled in with Tessel's firmware,
-               * so there's no need for an npm install. It's similar
-               * to how require('tessel') works.
-               */ 
-              var wifi = require('wifi-cc3000');
-              var network = '#####'; // put in your network name here
-              var pass = '#####'; // put in your password here, or leave blank for unsecured
-              var security = 'wpa2'; // other options are 'wep', 'wpa', or 'unsecured'
-              var timeouts = 0;
-
-              function connect(){
-                wifi.connect({
-                  security: security
-                  , ssid: network
-                  , password: pass
-                  , timeout: 30 // in seconds
-                });
-              }
-
-              wifi.on('connect', function(data){
-                // you're connected
-                console.log("connect emitted", data);
-              });
-
-              wifi.on('disconnect', function(data){
-                // wifi dropped, probably want to call connect() again
-                console.log("disconnect emitted", data);
-              })
-
-              wifi.on('timeout', function(err){
-                // tried to connect but couldn't, retry
-                console.log("timeout emitted");
-                timeouts++;
-                if (timeouts > 2) {
-                  // reset the wifi chip if we've timed out too many times
-                  powerCycle();
-                } else {
-                  // try to reconnect
-                  connect();
-                }
-              });
-
-              wifi.on('error', function(err){
-                // one of the following happened
-                // 1. tried to disconnect while not connected
-                // 2. tried to disconnect while in the middle of trying to connect
-                // 3. tried to initialize a connection without first waiting for a timeout or a disconnect
-                console.log("error emitted", err);
-              });
-
-              // reset the wifi chip progammatically
-              function powerCycle(){
-                // when the wifi chip resets, it will automatically try to reconnect
-                // to the last saved network
-                wifi.reset(function(){
-                  timeouts = 0; // reset timeouts
-                  console.log("done power cycling");
-                  // give it some time to auto reconnect
-                  setTimeout(function(){
-                    if (!wifi.isConnected()) {
-                      // try to reconnect
-                      connect();
-                    }
-                    }, 20 *1000); // 20 second wait
-                })
-              }
-
+      .row
+        .large-12.columns
+          .greyBar(style="height:2px;") 
+          p Check out these projects using Wifi to get started!
+          - var projects = [{title: 'Routing + Websockets on Tessel', slug: 'routing-websockets-on-tessel', imgUrl: 'https://tessel-portal.s3.amazonaws.com/uploads/original-51-1411607165747-Screen%20Shot%202014-09-24%20at%206.04.22%20PM.png'}, {title: 'Tessel Web Server', slug: 'tessel-web-server', imgUrl: 'https://tessel-portal.s3.amazonaws.com/uploads/original-35-1409119889203-sdcardModule.jpg'}, {title: 'tessel-websocket', slug: 'tessel-websocket', imgUrl: 'https://tessel-portal.s3.amazonaws.com/uploads/original-11-1411771810636-Screen%20Shot%202014-09-26%20at%203.49.30%20PM.png'}] 
+      .row
+        each project in projects
+          .large-4.columns.left
+            .projects-container
+              a(href="https://projects.tessel.io/projects/" + project.slug, target=0)
+                .project-image
+                  img(src=project.imgUrl)
+                .project-title
+                  p #{project.title}
+          
       .row
         .large-12.columns
           .greyBar(style="height:2px;")
