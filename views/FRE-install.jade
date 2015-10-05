@@ -49,7 +49,8 @@ block content
         .content#tab-pc
           p On Windows, Tessel drivers will install automatically when you plug in.
           p On Windows 7, you may receive the notification "Device driver software was not successfully installed". If you do, click on the notification, click the "Change settings..." button, and then select "Install driver software from Windows Update if it is not found on my computer." Save changes and re-try.
-          p Next, install <a href="http://nodejs.org">Node.JS</a>. You need this to interact with Tessel from the command line.
+          p Next, install <a href="http://nodejs.org">Node.JS v. 0.12.7</a>. You need this to interact with Tessel from the command line.
+          p Note: usb_bindings is not yet precompiled for Node 4, so you'll need to install Node v. 0.10 or 0.12 if you don't have Python installed.
           p After installing the Tessel drivers and Node.js, run this in cmd.exe:
           code
             cli npm install -g tessel
