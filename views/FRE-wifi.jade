@@ -78,11 +78,11 @@ block content
         .large-12.columns
           .greyBar(style="height:2px;")
           
-          p Tessel's wifi can also be controlled programatically. The full API docs can be found 
-            a(href="https://tessel.io/docs/wifi") here.
+          p Tessel's wifi can also be controlled programatically. The full API docs can be found
+            a(href="https://github.com/tessel/t1-docs/blob/master/wifi.md")  here.
 
           p Save the following in a file called <code>wifi-control.js</code>:
-          pre.prettyprint#exampleCode
+          pre.prettyprint#wifiExampleCode
             code.
               /* the wifi-cc3000 library is bundled in with Tessel's firmware,
                * so there's no need for an npm install. It's similar
@@ -93,15 +93,6 @@ block content
               var pass = '#####'; // put in your password here, or leave blank for unsecured
               var security = 'wpa2'; // other options are 'wep', 'wpa', or 'unsecured'
               var timeouts = 0;
-
-              function connect(){
-                wifi.connect({
-                  security: security
-                  , ssid: network
-                  , password: pass
-                  , timeout: 30 // in seconds
-                });
-              }
 
               wifi.on('connect', function(data){
                 // you're connected
@@ -149,6 +140,20 @@ block content
                     }
                     }, 20 *1000); // 20 second wait
                 })
+              }
+
+              function connect(){
+                wifi.connect({
+                security: security
+                , ssid: network
+                , password: pass
+                , timeout: 30 // in seconds
+                });
+              }
+
+              // connect wifi now, if not already connected
+              if (!wifi.isConnected()) {
+                connect();
               }
 
       .row
