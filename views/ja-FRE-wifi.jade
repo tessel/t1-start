@@ -82,7 +82,7 @@ block content
 
             a(href="https://tessel.io/docs/wifi") ここにあります。
           p 以下の内容を、<code>wifi-control.js</code>という名前のファイルに保存してください：
-          pre.prettyprint#exampleCode
+          pre.prettyprint#wifiExampleCode
             code.
               /* wifi-cc3000というライブラリをrequireしていますが、
                * このライブラリはTesselのファームウェアに組み込まれているので、
@@ -94,15 +94,6 @@ block content
               var pass = '#####'; // パスワードを入れてください。パスワード無しの場合は、カラ文字列にしてください。
               var security = 'wpa2'; // 他に「wep」「wpa」「unsecured」が指定できます。パスワード無しの場合は「unsecured」を指定してください。
               var timeouts = 0;
-
-              function connect(){
-                wifi.connect({
-                  security: security
-                  , ssid: network
-                  , password: pass
-                  , timeout: 30 // in seconds
-                });
-              }
 
               wifi.on('connect', function(data){
                 // 無線LANに接続された
@@ -150,6 +141,19 @@ block content
                     }
                     }, 20 *1000); // 20秒待つ
                 })
+              }
+
+              function connect(){
+                wifi.connect({
+                security: security
+                , ssid: network
+                , password: pass
+                , timeout: 30 // in seconds
+                });
+              }
+
+              if (!wifi.isConnected()) {
+                connect();
               }
 
       .row
