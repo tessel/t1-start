@@ -22,10 +22,11 @@ block content
       .tabs-content#install-content
         .content.active#tab-osx
           p
-            a(href="http://nodejs.org/") Node.js
+            a(href="http://nodejs.org/") Node.js v 0.12.7
             |  is a prerequisite for installing the Tessel command line. You can install it from the <a href="http://nodejs.org/">official website</a>, or if you have <a href="http://brew.sh/">brew</a> installed:
           code
             cli brew install node
+          p Note: usb_bindings is not yet compatible with Node 4, so you'll need to install Node v. 0.10 or 0.12.
           p Once Node.js is installed, run this installation script from your terminal
             code
               cli npm install -g tessel
@@ -34,8 +35,9 @@ block content
 
         .content#tab-linux
           p
-            a(href="http://nodejs.org/") Node.js
+            a(href="http://nodejs.org/") Node.js v. 0.12.7
             |  is a prerequisite for installing the Tessel command line. You can install it from the <a href="http://nodejs.org">official website</a> or following <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">these instructions for your package manager</a>.
+          p Note: usb_bindings is not yet compatible with Node 4, so you'll need to install Node v. 0.10 or 0.12.
           p If you are running Ubuntu <i>13.10 or later</i>, you can run this:
           code
             cli apt-get install nodejs nodejs-legacy
@@ -50,7 +52,7 @@ block content
           p On Windows, Tessel drivers will install automatically when you plug in.
           p On Windows 7, you may receive the notification "Device driver software was not successfully installed". If you do, click on the notification, click the "Change settings..." button, and then select "Install driver software from Windows Update if it is not found on my computer." Save changes and re-try.
           p Next, install <a href="http://nodejs.org">Node.JS v. 0.12.7</a>. You need this to interact with Tessel from the command line.
-          p Note: usb_bindings is not yet precompiled for Node 4, so you'll need to install Node v. 0.10 or 0.12 if you don't have Python installed.
+          p Note: usb_bindings is not yet compatible with Node 4, so you'll need to install Node v. 0.10 or 0.12.
           p After installing the Tessel drivers and Node.js, run this in cmd.exe:
           code
             cli npm install -g tessel
